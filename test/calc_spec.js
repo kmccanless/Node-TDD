@@ -5,6 +5,6 @@ var expect = chai.expect;
 
 describe('addition',function() {
     it('should correctly sum 2 digits',function(){
-        expect(calc(2,2)).to.equal(4);
+        expect(calc.addTwoDigits(2,2)).to.equal(4);
     })
 })
