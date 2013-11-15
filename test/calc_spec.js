@@ -1,5 +1,15 @@
 var     chai = require('chai')
-    ,   calc = require('../calc.js');
+    ,   sandboxed = require('sandboxed-module')
+    ,   calc = sandboxed.require('../calc.js',
+        {
+            requires : {'./log.js' :
+            function(){
+                this.info = function(){};
+                this.debug = function(){};
+                this.error = function(){};
+            }}
+
+        });
 
 var expect = chai.expect;
 

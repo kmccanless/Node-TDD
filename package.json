@@ -12,5 +12,8 @@
     "tdd"
   ],
   "author": "Keith McCanless",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "sandboxed-module": "~0.3.0"
+  }
 }
