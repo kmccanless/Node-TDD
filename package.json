@@ -14,6 +14,7 @@
   "author": "Keith McCanless",
   "license": "MIT",
   "dependencies": {
-    "sandboxed-module": "~0.3.0"
+    "sandboxed-module": "~0.3.0",
+    "sinon": "~1.7.3"
   }
 }

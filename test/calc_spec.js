@@ -1,19 +1,22 @@
 var     chai = require('chai')
-    ,   sandboxed = require('sandboxed-module')
-    ,   calc = sandboxed.require('../calc.js',
-        {
-            requires : {'./log.js' :
-            function(){
-                this.info = function(){};
-                this.debug = function(){};
-                this.error = function(){};
-            }}
+    ,   sinon = require('sinon')
+    ,   sandboxed = require('sandboxed-module');
 
-        });
-
-var expect = chai.expect;
+var expect = chai.expect, calc, errorLogger;
 
 describe('addition',function() {
+    beforeEach(function(){
+        errorLogger = sinon.spy();
+        calc = sandboxed.require('../calc.js',
+            {
+                requires : {'./log.js' :
+                    function(){
+                        this.info = sinon.stub();
+                        this.debug = sinon.stub();
+                        this.error = errorLogger;
+                    }}
+            });
+    })
     it('should correctly sum 2 digits',function(){
         expect(calc.addTwoDigits(2,2)).to.equal(4);
     })
@@ -21,4 +24,14 @@ describe('addition',function() {
     it('should correctly sum 3 digits',function(){
         expect(calc.addThreeDigits(2,2,2)).to.equal(6);
     })
+    it('should log error if too many arguments',function(){
+        calc.addTwoDigits(2,2,2);
+        expect(errorLogger.callCount).to.equal(1);
+    })
+    it('should log error if too many arguments',function(){
+        calc.addThreeDigits(2,2,2,2);
+        expect(errorLogger.callCount).to.equal(1);
+    })
+
+
 })
