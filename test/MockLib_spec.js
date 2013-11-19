@@ -18,4 +18,10 @@ describe('test asyncronous functions', function() {
             })
         }
     );
+
+    it('should return true via a promise', function(done) {
+        mockLib.asyncWithPromise().should.be.fulfilled.then(function (result) {
+            expect(result).to.be.true;
+        }).should.notify(done);
+    })
 })
