@@ -1,26 +1,9 @@
 var     chai = require("chai")
     ,   chaiAsPromised = require("chai-as-promised")
-    ,   sandboxed = require('sandboxed-module')
-    ,   sinon = require('sinon')
     ,   mockLib = require('../MockAsyncLib.js');
 
 var expect = chai.expect,should = chai.should(), mockLib, mockEventor;
 chai.use(chaiAsPromised);
-
-function FireableEventor () {
-    var handlerProxy;
-    this.mockEvent = function(event, handler ) {
-        handlerProxy = handler;
-    };
-    this.fireProxy = function(data) {
-        handlerProxy(data);
-    }
-};
-
-
-before(function(){
-
-})
 
 describe('test asyncronous functions', function() {
     it('should return true via a callback', function(done) {
