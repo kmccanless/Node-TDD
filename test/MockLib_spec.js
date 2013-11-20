@@ -1,13 +1,9 @@
 var     chai = require("chai")
     ,   chaiAsPromised = require("chai-as-promised")
-    ,   MockLib = require('../MockLib.js')
+    ,   mockLib = require('../MockLib.js')
 
-var expect = chai.expect,should = chai.should(), mockLib;
-chai.use(chaiAsPromised);
+var expect = chai.expect,should = chai.should();
 
-beforeEach(function(){
-    mockLib = new MockLib();
-})
 
 describe('test asyncronous functions', function() {
     it('should return true via a callback', function(done) {

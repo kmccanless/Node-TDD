@@ -1,4 +1,4 @@
-module.exports = function() {
+function Mock() {
     this.sync = function () {
         return true;
     };
@@ -8,4 +8,6 @@ module.exports = function() {
         }, 200);
     };
 };
+
+module.exports = new Mock();
 
