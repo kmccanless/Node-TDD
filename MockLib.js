@@ -1,6 +1,6 @@
 var Q= require("q");
 
-module.exports = function() {
+function Mock() {
     this.sync = function () {
         return true;
     };
@@ -17,4 +17,6 @@ module.exports = function() {
         return deferred.promise;
     };
 };
+
+module.exports = new Mock();
 
