@@ -1,6 +1,7 @@
-var Q= require("q");
+var     Q= require("q")
+    ,   mockEventLib = require("./MockEventLib.js");
 
-module.exports = function() {
+function MockAsync () {
     this.sync = function () {
         return true;
     };
@@ -16,5 +17,10 @@ module.exports = function() {
         }, 200);
         return deferred.promise;
     };
+    this.on = function(event,handler) {
+        mockEventLib.mockEvent(event,handler);
+    }
 };
+
+module.exports = new MockAsync();
 
